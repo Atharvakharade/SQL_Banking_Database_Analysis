@@ -33,6 +33,7 @@ CREATE TABLE Transactions_2 (
     FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
 );
 
+
 INSERT INTO Transactions_2
 (TransactionID, AccountID, CustomerID, TransactionDate, Amount, TransactionType)
 VALUES
@@ -48,6 +49,69 @@ VALUES
 (310, 202, 102, '2025-05-20', 11000.00, 'Payment');
 
 SELECT * FROM Transactions;
+
+SELECT c.CustomerID,
+CONCAT(c.FirstName, ' ',c.LastName) AS CustomerName,
+t.TransactionID,
+t.TransactionType,
+t.Amount
+FROM Customers_2 c
+INNER JOIN Transactions_2 t
+ON c.CustomerID = t.CustomerID;
+    
+SELECT 
+    c.CustomerID,
+    CONCAT(c.FirstName, ' ', c.LastName) AS CustomerName,
+    t.TransactionID,
+    t.TransactionType,
+    t.Amount
+FROM Customers_2 c
+LEFT JOIN Transactions_2 t
+    ON c.CustomerID = t.CustomerID;
+    
+SELECT 
+    c.CustomerID,
+    CONCAT(c.FirstName, ' ', c.LastName) AS CustomerName,
+    t.TransactionID,
+    t.TransactionType,
+    t.Amount
+FROM Customers_2 c
+INNER JOIN Transactions_2 t
+    ON c.CustomerID = t.CustomerID
+WHERE t.Amount > (
+    SELECT AVG(Amount)
+    FROM Transactions
+)
+ORDER BY t.Amount DESC;
+
+UPDATE Transactions_2
+SET Amount = 75000.00
+WHERE TransactionID = 301;
+
+UPDATE Transactions_2
+SET Amount = 62000.00
+WHERE TransactionID = 307;
+
+UPDATE Transactions
+SET Amount = 85000.00
+WHERE TransactionID = 309;
+
+SELECT * 
+FROM Transactions;
+
+SELECT 
+    c.CustomerID,
+    CONCAT(c.FirstName, ' ', c.LastName) AS CustomerName,
+    t.TransactionID,
+    t.TransactionDate,
+    t.TransactionType,
+    t.Amount
+FROM Customers_2 c
+INNER JOIN Transactions_2 t
+    ON c.CustomerID = t.CustomerID
+WHERE t.TransactionType = 'Deposit'
+  AND t.Amount > 50000
+ORDER BY t.Amount DESC;
 
 
 
