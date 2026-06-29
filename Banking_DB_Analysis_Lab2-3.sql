@@ -1,5 +1,6 @@
 use BankingDB;
 
+
 INSERT INTO Customers
 (CustomerID, Firstname, Lastname, Email, Phone, AccountcreationDate, DateofBirth)
 VALUES
@@ -8,6 +9,7 @@ VALUES
 (105, 'Rohit', 'Verma', 'rohit.verma@gmail.com', '9345678912', '2025-06-03', '1997-08-10'),
 (106, 'Neha', 'Singh', 'neha.singh@gmail.com', '9456789123', '2025-06-04', '2001-02-18'),
 (107, 'Karan', 'Mehta', 'karan.mehta@gmail.com', '9567891234', '2025-06-05', '1996-06-30');
+
 
 INSERT INTO Accounts
 (AccountID, CustomerID, AccountType, Balance)
@@ -63,3 +65,9 @@ DELETE FROM Customers
 where CustomerID = 102;
 
 select * from Accounts;
+
+
+
+
+
+
