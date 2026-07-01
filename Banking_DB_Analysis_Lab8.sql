@@ -78,9 +78,10 @@ SELECT
 FROM Customers_2 c
 INNER JOIN Transactions_2 t
     ON c.CustomerID = t.CustomerID
-WHERE t.Amount > (
+WHERE t.Amount > 
+(
     SELECT AVG(Amount)
-    FROM Transactions
+    FROM Transactions_2
 )
 ORDER BY t.Amount DESC;
 
@@ -112,6 +113,11 @@ INNER JOIN Transactions_2 t
 WHERE t.TransactionType = 'Deposit'
   AND t.Amount > 50000
 ORDER BY t.Amount DESC;
+
+select * from Transactions_2;
+
+SELECT AVG(Amount) AS average_Amount
+FROM Transactions_2;
 
 
 
